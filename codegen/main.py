@@ -3,7 +3,7 @@ import os.path as path
 
 from parse import *
 from codegen_types import *
-from paths import *
+from config import *
 
 import dart
 import c
@@ -11,6 +11,8 @@ import makefile
 import cloc_exclude_list
 
 def all_with_extension(directory: str, ext: str) -> list[str]:
+    if not ext.startswith('.'): ext = f'.{ext}'
+
     out: list[str] = []
     for root, _, files in os.walk(directory):
         for file in files:
@@ -21,19 +23,22 @@ def all_with_extension(directory: str, ext: str) -> list[str]:
 
 def main():
     parsed_files: list[ParsedGenFile] = []
-    for gen_file in all_with_extension("native", ".gen"):
+    for gen_file in all_with_extension(
+        get_config(ConfigField.definition_search_path),
+        get_config(ConfigField.definition_ext)
+    ):
         parsed_files.append(
             Parser(gen_file).parse()
         )
     
-    with open(DART_OUTPUT_PATH,       "wt") as fh:
+    with open(get_config(ConfigField.dart_output_path),       "wt") as fh:
         fh.write(dart             .codegen(parsed_files))
-    with open(C_OUTPUT_PATH,          "wt") as fh:
+    with open(get_config(ConfigField.c_output_path),          "wt") as fh:
         fh.write(c                .codegen(parsed_files))
-    with open("Makefile",             "wt") as fh:
-        fh.write(makefile         .codegen(parsed_files))
-    with open(CLOC_EXCLUDE_LIST_PATH, "wt") as fh:
+    with open(get_config(ConfigField.cloc_exclude_list_path), "wt") as fh:
         fh.write(cloc_exclude_list.codegen())
+    with open("Makefile",                                     "wt") as fh:
+        fh.write(makefile         .codegen(parsed_files))
 
     
 

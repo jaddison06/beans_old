@@ -1,4 +1,4 @@
-from paths import *
+from config import *
 
 def codegen() -> str:
     # Files and directories that we don't want cloc to count.
@@ -6,10 +6,10 @@ def codegen() -> str:
         ".dart_tool",
         ".vscode",
         "build",
-        DART_OUTPUT_PATH,
-        C_OUTPUT_PATH,
+        get_config(ConfigField.dart_output_path),
+        get_config(ConfigField.c_output_path),
         "Makefile",
-        CLOC_EXCLUDE_LIST_PATH
+        get_config(ConfigField.cloc_exclude_list_path)
     ])
 
     return out

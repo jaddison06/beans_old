@@ -1,7 +1,7 @@
+from config import *
 from codegen_types import *
 import os.path as path
 from shared_library_extension import *
-from paths import *
 
 def generate_makefile_item(target: str, dependencies: list[str], commands: list[str]) -> str:
     out = f"{target}:"
@@ -74,8 +74,8 @@ def codegen(files: list[ParsedGenFile]) -> str:
         [],
         [
             "rm -rf build",
-            f"rm -f {C_OUTPUT_PATH}",
-            f"rm -f {DART_OUTPUT_PATH}"
+            f"rm -f {get_config(ConfigField.c_output_path)}",
+            f"rm -f {get_config(ConfigField.c_output_path)}"
         ]
     ) + generate_makefile_item(
         # The `cloc` command-line utility MUST be installed, or this won't work.
@@ -84,13 +84,13 @@ def codegen(files: list[ParsedGenFile]) -> str:
         [],
         [
             # exclude generated files so cloc actually shows real results
-            f"cloc . --exclude-list={CLOC_EXCLUDE_LIST_PATH}"
+            f"cloc . --exclude-list={get_config(ConfigField.cloc_exclude_list_path)}"
         ]
     ) + generate_makefile_item(
         "cloc-by-file",
         [],
         [
-            f"cloc . --exclude-list={CLOC_EXCLUDE_LIST_PATH} --by-file"
+            f"cloc . --exclude-list={get_config(ConfigField.cloc_exclude_list_path)} --by-file"
         ]
     ) + out
 
