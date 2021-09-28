@@ -1,2 +1,1 @@
-# beans
-Open-source lighting control system
+A simple command-line application.
