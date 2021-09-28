@@ -75,7 +75,7 @@ def codegen(files: list[ParsedGenFile]) -> str:
         [
             "rm -rf build",
             f"rm -f {get_config(ConfigField.c_output_path)}",
-            f"rm -f {get_config(ConfigField.c_output_path)}"
+            f"rm -f {get_config(ConfigField.dart_output_path)}"
         ]
     ) + generate_makefile_item(
         # The `cloc` command-line utility MUST be installed, or this won't work.

@@ -1,0 +1,27 @@
+@LinkWithLib(SDL2)
+
+enum SDLInitErrorCode {
+    Success // Success
+    InitVideo_Fail // SDL_InitVideo() failed
+    CreateWindow_Fail // SDL_CreateWindow() failed
+    CreateRenderer_Fail // SDL_CreateRenderer() failed
+}
+
+class SDLDisplay {
+    @Initializer()
+    void* SDInit(char* title)
+
+    @Getter(errorCode)
+    SDLInitErrorCode SDGetErrorCode()
+
+    @Invalidates()
+    @Show(Destroy)
+    void SDDestroy()
+
+    void Flush()
+
+    void DrawPoint(int x, int y, int r, int g, int b)
+    void DrawLine(int x1, int y1, int x2, int y2, int r, int g, int b)
+    void DrawRect(int x, int y, int w, int h, int r, int g, int b)
+    void FillRect(int x, int y, int w, int h, int r, int g, int b)
+}
