@@ -2,8 +2,9 @@ import 'V2.dart';
 import 'Colour.dart';
 
 abstract class Display {
-  V2 GetSize();
-  V2 Flush();
+  V2 get size;
+  int get frameCount;
+  void Flush();
 
   void DrawPoint(V2 pos, Colour colour);
   void DrawLine(V2 start, V2 end, Colour colour);

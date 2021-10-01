@@ -7,16 +7,21 @@ enum SDLInitErrorCode {
     CreateRenderer_Fail // SDL_CreateRenderer() failed
 }
 
-class SDLDisplay {
+class SDLDisplayRaw {
     @Initializer()
     void* SDInit(char* title)
 
     @Getter(errorCode)
     SDLInitErrorCode SDGetErrorCode()
 
+    @Getter(frameCount)
+    int SDGetFrameCount()
+
     @Invalidates()
     @Show(Destroy)
     void SDDestroy()
+
+    void GetSize(int* width, int* height)
 
     void Flush()
 

@@ -6,18 +6,18 @@ typedef int BOOL;
 #define TRUE 1
 #define FALSE 0
 
-// ----------NATIVE/SDL/SDLEVENT.GEN----------
+// ----------NATIVE/EVENTS.GEN----------
 
 typedef enum {
-    SDLEventType_None = 0,
-    SDLEventType_Quit = 1,
-    SDLEventType_KeyDown = 2,
-    SDLEventType_KeyUp = 3,
-    SDLEventType_MouseMove = 4,
-    SDLEventType_MouseDown = 5,
-    SDLEventType_MouseUp = 6,
-    SDLEventType_MouseScroll = 7,
-} SDLEventType;
+    EventType_None = 0,
+    EventType_Quit = 1,
+    EventType_KeyDown = 2,
+    EventType_KeyUp = 3,
+    EventType_MouseMove = 4,
+    EventType_MouseDown = 5,
+    EventType_MouseUp = 6,
+    EventType_MouseScroll = 7,
+} EventType;
 
 typedef enum {
     MouseButton_Left = 0,
@@ -150,6 +150,8 @@ typedef enum {
     KeyCode_AudioPlay = 120,
     KeyCode_Unknown = 121,
 } KeyCode;
+
+// ----------NATIVE/SDL/SDLEVENT.GEN----------
 
 // ----------NATIVE/SDL/SDLDISPLAY.GEN----------
 

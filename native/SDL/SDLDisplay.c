@@ -6,12 +6,18 @@ typedef struct
     SDL_Window* window;
     SDL_Renderer* renderer;
 
+    int frameCount;
     SDLInitErrorCode errorCode;
 } SDLDisplay;
 
 SDLInitErrorCode SDGetErrorCode(SDLDisplay* display)
 {
     return display->errorCode;
+}
+
+int SDGetFrameCount(SDLDisplay* display)
+{
+    return display->frameCount;
 }
 
 SDLDisplay* LogSDLError(SDLDisplay* display, SDLInitErrorCode errorCode)
@@ -45,6 +51,7 @@ SDLDisplay* SDInit(const char* title)
         return LogSDLError(out, SDLInitErrorCode_CreateRenderer_Fail);
     
     out->errorCode = SDLInitErrorCode_Success;
+    out->frameCount = 0;
     return out;
 }
 
@@ -61,11 +68,20 @@ void SetColour(SDLDisplay* display, int r, int g, int b)
     SDL_SetRenderDrawColor(display->renderer, r, g, b, SDL_ALPHA_OPAQUE);
 }
 
+void GetSize(SDLDisplay* display, int* w, int* h)
+{
+    SDL_DisplayMode dm;
+    SDL_GetDesktopDisplayMode(0, &dm);
+    *w = dm.w;
+    *h = dm.h;
+}
+
 void Flush(SDLDisplay* display)
 {
     SDL_RenderPresent(display->renderer);
     SetColour(display, 0, 0, 0);
     SDL_RenderClear(display->renderer);
+    display->frameCount++;
 }
 
 void DrawPoint(SDLDisplay* display, int x, int y, int r, int g, int b)

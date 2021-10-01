@@ -5,11 +5,11 @@ import 'package:ffi/ffi.dart';
 // for @mustCallSuper
 import 'package:meta/meta.dart';
 
-// ----------FILE: NATIVE/SDL/SDLEVENT.GEN----------
+// ----------FILE: NATIVE/EVENTS.GEN----------
 
 // ----------ENUMS----------
 
-enum SDLEventType {
+enum EventType {
     None,
     Quit,
     KeyDown,
@@ -20,19 +20,19 @@ enum SDLEventType {
     MouseScroll,
 }
 
-SDLEventType SDLEventTypeFromInt(int val) => SDLEventType.values[val];
-int SDLEventTypeToInt(SDLEventType val) => SDLEventType.values.indexOf(val);
+EventType EventTypeFromInt(int val) => EventType.values[val];
+int EventTypeToInt(EventType val) => EventType.values.indexOf(val);
 
-String SDLEventTypeToString(SDLEventType val) {
+String EventTypeToString(EventType val) {
     switch (val) {
-        case SDLEventType.None: { return 'None'; }
-        case SDLEventType.Quit: { return 'Quit'; }
-        case SDLEventType.KeyDown: { return 'KeyDown'; }
-        case SDLEventType.KeyUp: { return 'KeyUp'; }
-        case SDLEventType.MouseMove: { return 'MouseMove'; }
-        case SDLEventType.MouseDown: { return 'MouseDown'; }
-        case SDLEventType.MouseUp: { return 'MouseUp'; }
-        case SDLEventType.MouseScroll: { return 'MouseScroll'; }
+        case EventType.None: { return 'None'; }
+        case EventType.Quit: { return 'Quit'; }
+        case EventType.KeyDown: { return 'KeyDown'; }
+        case EventType.KeyUp: { return 'KeyUp'; }
+        case EventType.MouseMove: { return 'MouseMove'; }
+        case EventType.MouseDown: { return 'MouseDown'; }
+        case EventType.MouseUp: { return 'MouseUp'; }
+        case EventType.MouseScroll: { return 'MouseScroll'; }
     }
 }
 
@@ -310,61 +310,63 @@ String KeyCodeToString(KeyCode val) {
     }
 }
 
+// ----------FILE: NATIVE/SDL/SDLEVENT.GEN----------
+
 // ----------FUNC SIG TYPEDEFS FOR CLASSES----------
 
-// ----------SDLEVENT----------
+// ----------SDLEVENTRAW----------
 
 // void* SEInit()
-typedef _libSDLEvent_class_SDLEvent_method_SEInit_native_sig = Pointer<Void> Function();
-typedef _libSDLEvent_class_SDLEvent_method_SEInit_sig = Pointer<Void> Function();
+typedef _libSDLEvent_class_SDLEventRaw_method_SEInit_native_sig = Pointer<Void> Function();
+typedef _libSDLEvent_class_SDLEventRaw_method_SEInit_sig = Pointer<Void> Function();
 
 // void SEDestroy(void* struct_ptr)
-typedef _libSDLEvent_class_SDLEvent_method_SEDestroy_native_sig = Void Function(Pointer<Void>);
-typedef _libSDLEvent_class_SDLEvent_method_SEDestroy_sig = void Function(Pointer<Void>);
+typedef _libSDLEvent_class_SDLEventRaw_method_SEDestroy_native_sig = Void Function(Pointer<Void>);
+typedef _libSDLEvent_class_SDLEventRaw_method_SEDestroy_sig = void Function(Pointer<Void>);
 
 // int GetX(void* struct_ptr)
-typedef _libSDLEvent_class_SDLEvent_method_GetX_native_sig = Int32 Function(Pointer<Void>);
-typedef _libSDLEvent_class_SDLEvent_method_GetX_sig = int Function(Pointer<Void>);
+typedef _libSDLEvent_class_SDLEventRaw_method_GetX_native_sig = Int32 Function(Pointer<Void>);
+typedef _libSDLEvent_class_SDLEventRaw_method_GetX_sig = int Function(Pointer<Void>);
 
 // int GetY(void* struct_ptr)
-typedef _libSDLEvent_class_SDLEvent_method_GetY_native_sig = Int32 Function(Pointer<Void>);
-typedef _libSDLEvent_class_SDLEvent_method_GetY_sig = int Function(Pointer<Void>);
+typedef _libSDLEvent_class_SDLEventRaw_method_GetY_native_sig = Int32 Function(Pointer<Void>);
+typedef _libSDLEvent_class_SDLEventRaw_method_GetY_sig = int Function(Pointer<Void>);
 
 // KeyCode GetKey(void* struct_ptr)
-typedef _libSDLEvent_class_SDLEvent_method_GetKey_native_sig = Int32 Function(Pointer<Void>);
-typedef _libSDLEvent_class_SDLEvent_method_GetKey_sig = int Function(Pointer<Void>);
+typedef _libSDLEvent_class_SDLEventRaw_method_GetKey_native_sig = Int32 Function(Pointer<Void>);
+typedef _libSDLEvent_class_SDLEventRaw_method_GetKey_sig = int Function(Pointer<Void>);
 
 // MouseButton GetMouseButton(void* struct_ptr)
-typedef _libSDLEvent_class_SDLEvent_method_GetMouseButton_native_sig = Int32 Function(Pointer<Void>);
-typedef _libSDLEvent_class_SDLEvent_method_GetMouseButton_sig = int Function(Pointer<Void>);
+typedef _libSDLEvent_class_SDLEventRaw_method_GetMouseButton_native_sig = Int32 Function(Pointer<Void>);
+typedef _libSDLEvent_class_SDLEventRaw_method_GetMouseButton_sig = int Function(Pointer<Void>);
 
-// SDLEventType GetType(void* struct_ptr)
-typedef _libSDLEvent_class_SDLEvent_method_GetType_native_sig = Int32 Function(Pointer<Void>);
-typedef _libSDLEvent_class_SDLEvent_method_GetType_sig = int Function(Pointer<Void>);
+// EventType GetType(void* struct_ptr)
+typedef _libSDLEvent_class_SDLEventRaw_method_GetType_native_sig = Int32 Function(Pointer<Void>);
+typedef _libSDLEvent_class_SDLEventRaw_method_GetType_sig = int Function(Pointer<Void>);
 
 // int Poll(void* struct_ptr)
-typedef _libSDLEvent_class_SDLEvent_method_Poll_native_sig = Int32 Function(Pointer<Void>);
-typedef _libSDLEvent_class_SDLEvent_method_Poll_sig = int Function(Pointer<Void>);
+typedef _libSDLEvent_class_SDLEventRaw_method_Poll_native_sig = Int32 Function(Pointer<Void>);
+typedef _libSDLEvent_class_SDLEventRaw_method_Poll_sig = int Function(Pointer<Void>);
 
 // ----------CLASS IMPLEMENTATIONS----------
 
-class SDLEvent {
+class SDLEventRaw {
     Pointer<Void> structPointer = nullptr;
 
     void _validatePointer(String methodName) {
         if (structPointer.address == 0) {
-            throw Exception('SDLEvent.$methodName was called, but structPointer is a nullptr.');
+            throw Exception('SDLEventRaw.$methodName was called, but structPointer is a nullptr.');
         }
     }
 
-    static _libSDLEvent_class_SDLEvent_method_SEInit_sig? _SEInit;
-    static _libSDLEvent_class_SDLEvent_method_SEDestroy_sig? _SEDestroy;
-    static _libSDLEvent_class_SDLEvent_method_GetX_sig? _GetX;
-    static _libSDLEvent_class_SDLEvent_method_GetY_sig? _GetY;
-    static _libSDLEvent_class_SDLEvent_method_GetKey_sig? _GetKey;
-    static _libSDLEvent_class_SDLEvent_method_GetMouseButton_sig? _GetMouseButton;
-    static _libSDLEvent_class_SDLEvent_method_GetType_sig? _GetType;
-    static _libSDLEvent_class_SDLEvent_method_Poll_sig? _Poll;
+    static _libSDLEvent_class_SDLEventRaw_method_SEInit_sig? _SEInit;
+    static _libSDLEvent_class_SDLEventRaw_method_SEDestroy_sig? _SEDestroy;
+    static _libSDLEvent_class_SDLEventRaw_method_GetX_sig? _GetX;
+    static _libSDLEvent_class_SDLEventRaw_method_GetY_sig? _GetY;
+    static _libSDLEvent_class_SDLEventRaw_method_GetKey_sig? _GetKey;
+    static _libSDLEvent_class_SDLEventRaw_method_GetMouseButton_sig? _GetMouseButton;
+    static _libSDLEvent_class_SDLEventRaw_method_GetType_sig? _GetType;
+    static _libSDLEvent_class_SDLEventRaw_method_Poll_sig? _Poll;
 
     void _initRefs() {
         if (
@@ -379,23 +381,23 @@ class SDLEvent {
         ) {
             final lib = DynamicLibrary.open('build/native/SDL/libSDLEvent.so');
 
-            _SEInit = lib.lookupFunction<_libSDLEvent_class_SDLEvent_method_SEInit_native_sig, _libSDLEvent_class_SDLEvent_method_SEInit_sig>('SEInit');
-            _SEDestroy = lib.lookupFunction<_libSDLEvent_class_SDLEvent_method_SEDestroy_native_sig, _libSDLEvent_class_SDLEvent_method_SEDestroy_sig>('SEDestroy');
-            _GetX = lib.lookupFunction<_libSDLEvent_class_SDLEvent_method_GetX_native_sig, _libSDLEvent_class_SDLEvent_method_GetX_sig>('GetX');
-            _GetY = lib.lookupFunction<_libSDLEvent_class_SDLEvent_method_GetY_native_sig, _libSDLEvent_class_SDLEvent_method_GetY_sig>('GetY');
-            _GetKey = lib.lookupFunction<_libSDLEvent_class_SDLEvent_method_GetKey_native_sig, _libSDLEvent_class_SDLEvent_method_GetKey_sig>('GetKey');
-            _GetMouseButton = lib.lookupFunction<_libSDLEvent_class_SDLEvent_method_GetMouseButton_native_sig, _libSDLEvent_class_SDLEvent_method_GetMouseButton_sig>('GetMouseButton');
-            _GetType = lib.lookupFunction<_libSDLEvent_class_SDLEvent_method_GetType_native_sig, _libSDLEvent_class_SDLEvent_method_GetType_sig>('GetType');
-            _Poll = lib.lookupFunction<_libSDLEvent_class_SDLEvent_method_Poll_native_sig, _libSDLEvent_class_SDLEvent_method_Poll_sig>('Poll');
+            _SEInit = lib.lookupFunction<_libSDLEvent_class_SDLEventRaw_method_SEInit_native_sig, _libSDLEvent_class_SDLEventRaw_method_SEInit_sig>('SEInit');
+            _SEDestroy = lib.lookupFunction<_libSDLEvent_class_SDLEventRaw_method_SEDestroy_native_sig, _libSDLEvent_class_SDLEventRaw_method_SEDestroy_sig>('SEDestroy');
+            _GetX = lib.lookupFunction<_libSDLEvent_class_SDLEventRaw_method_GetX_native_sig, _libSDLEvent_class_SDLEventRaw_method_GetX_sig>('GetX');
+            _GetY = lib.lookupFunction<_libSDLEvent_class_SDLEventRaw_method_GetY_native_sig, _libSDLEvent_class_SDLEventRaw_method_GetY_sig>('GetY');
+            _GetKey = lib.lookupFunction<_libSDLEvent_class_SDLEventRaw_method_GetKey_native_sig, _libSDLEvent_class_SDLEventRaw_method_GetKey_sig>('GetKey');
+            _GetMouseButton = lib.lookupFunction<_libSDLEvent_class_SDLEventRaw_method_GetMouseButton_native_sig, _libSDLEvent_class_SDLEventRaw_method_GetMouseButton_sig>('GetMouseButton');
+            _GetType = lib.lookupFunction<_libSDLEvent_class_SDLEventRaw_method_GetType_native_sig, _libSDLEvent_class_SDLEventRaw_method_GetType_sig>('GetType');
+            _Poll = lib.lookupFunction<_libSDLEvent_class_SDLEventRaw_method_Poll_native_sig, _libSDLEvent_class_SDLEventRaw_method_Poll_sig>('Poll');
         }
     }
 
-    SDLEvent() {
+    SDLEventRaw() {
         _initRefs();
         structPointer = _SEInit!();
     }
 
-    SDLEvent.fromPointer(Pointer<Void> ptr) {
+    SDLEventRaw.fromPointer(Pointer<Void> ptr) {
         _initRefs();
         structPointer = ptr;
     }
@@ -431,9 +433,9 @@ class SDLEvent {
         return MouseButtonFromInt(_GetMouseButton!(structPointer));
     }
 
-    SDLEventType get type {
+    EventType get type {
         _validatePointer('type');
-        return SDLEventTypeFromInt(_GetType!(structPointer));
+        return EventTypeFromInt(_GetType!(structPointer));
     }
 
     int Poll() {
@@ -468,65 +470,77 @@ String SDLInitErrorCodeToString(SDLInitErrorCode val) {
 
 // ----------FUNC SIG TYPEDEFS FOR CLASSES----------
 
-// ----------SDLDISPLAY----------
+// ----------SDLDISPLAYRAW----------
 
 // void* SDInit(char* title)
-typedef _libSDLDisplay_class_SDLDisplay_method_SDInit_native_sig = Pointer<Void> Function(Pointer<Utf8>);
-typedef _libSDLDisplay_class_SDLDisplay_method_SDInit_sig = Pointer<Void> Function(Pointer<Utf8>);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_SDInit_native_sig = Pointer<Void> Function(Pointer<Utf8>);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_SDInit_sig = Pointer<Void> Function(Pointer<Utf8>);
 
 // SDLInitErrorCode SDGetErrorCode(void* struct_ptr)
-typedef _libSDLDisplay_class_SDLDisplay_method_SDGetErrorCode_native_sig = Int32 Function(Pointer<Void>);
-typedef _libSDLDisplay_class_SDLDisplay_method_SDGetErrorCode_sig = int Function(Pointer<Void>);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_SDGetErrorCode_native_sig = Int32 Function(Pointer<Void>);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_SDGetErrorCode_sig = int Function(Pointer<Void>);
+
+// int SDGetFrameCount(void* struct_ptr)
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_SDGetFrameCount_native_sig = Int32 Function(Pointer<Void>);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_SDGetFrameCount_sig = int Function(Pointer<Void>);
 
 // void SDDestroy(void* struct_ptr)
-typedef _libSDLDisplay_class_SDLDisplay_method_SDDestroy_native_sig = Void Function(Pointer<Void>);
-typedef _libSDLDisplay_class_SDLDisplay_method_SDDestroy_sig = void Function(Pointer<Void>);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_SDDestroy_native_sig = Void Function(Pointer<Void>);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_SDDestroy_sig = void Function(Pointer<Void>);
+
+// void GetSize(void* struct_ptr, int* width, int* height)
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_GetSize_native_sig = Void Function(Pointer<Void>, Pointer<Int32>, Pointer<Int32>);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_GetSize_sig = void Function(Pointer<Void>, Pointer<Int32>, Pointer<Int32>);
 
 // void Flush(void* struct_ptr)
-typedef _libSDLDisplay_class_SDLDisplay_method_Flush_native_sig = Void Function(Pointer<Void>);
-typedef _libSDLDisplay_class_SDLDisplay_method_Flush_sig = void Function(Pointer<Void>);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_Flush_native_sig = Void Function(Pointer<Void>);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_Flush_sig = void Function(Pointer<Void>);
 
 // void DrawPoint(void* struct_ptr, int x, int y, int r, int g, int b)
-typedef _libSDLDisplay_class_SDLDisplay_method_DrawPoint_native_sig = Void Function(Pointer<Void>, Int32, Int32, Int32, Int32, Int32);
-typedef _libSDLDisplay_class_SDLDisplay_method_DrawPoint_sig = void Function(Pointer<Void>, int, int, int, int, int);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_DrawPoint_native_sig = Void Function(Pointer<Void>, Int32, Int32, Int32, Int32, Int32);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_DrawPoint_sig = void Function(Pointer<Void>, int, int, int, int, int);
 
 // void DrawLine(void* struct_ptr, int x1, int y1, int x2, int y2, int r, int g, int b)
-typedef _libSDLDisplay_class_SDLDisplay_method_DrawLine_native_sig = Void Function(Pointer<Void>, Int32, Int32, Int32, Int32, Int32, Int32, Int32);
-typedef _libSDLDisplay_class_SDLDisplay_method_DrawLine_sig = void Function(Pointer<Void>, int, int, int, int, int, int, int);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_DrawLine_native_sig = Void Function(Pointer<Void>, Int32, Int32, Int32, Int32, Int32, Int32, Int32);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_DrawLine_sig = void Function(Pointer<Void>, int, int, int, int, int, int, int);
 
 // void DrawRect(void* struct_ptr, int x, int y, int w, int h, int r, int g, int b)
-typedef _libSDLDisplay_class_SDLDisplay_method_DrawRect_native_sig = Void Function(Pointer<Void>, Int32, Int32, Int32, Int32, Int32, Int32, Int32);
-typedef _libSDLDisplay_class_SDLDisplay_method_DrawRect_sig = void Function(Pointer<Void>, int, int, int, int, int, int, int);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_DrawRect_native_sig = Void Function(Pointer<Void>, Int32, Int32, Int32, Int32, Int32, Int32, Int32);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_DrawRect_sig = void Function(Pointer<Void>, int, int, int, int, int, int, int);
 
 // void FillRect(void* struct_ptr, int x, int y, int w, int h, int r, int g, int b)
-typedef _libSDLDisplay_class_SDLDisplay_method_FillRect_native_sig = Void Function(Pointer<Void>, Int32, Int32, Int32, Int32, Int32, Int32, Int32);
-typedef _libSDLDisplay_class_SDLDisplay_method_FillRect_sig = void Function(Pointer<Void>, int, int, int, int, int, int, int);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_FillRect_native_sig = Void Function(Pointer<Void>, Int32, Int32, Int32, Int32, Int32, Int32, Int32);
+typedef _libSDLDisplay_class_SDLDisplayRaw_method_FillRect_sig = void Function(Pointer<Void>, int, int, int, int, int, int, int);
 
 // ----------CLASS IMPLEMENTATIONS----------
 
-class SDLDisplay {
+class SDLDisplayRaw {
     Pointer<Void> structPointer = nullptr;
 
     void _validatePointer(String methodName) {
         if (structPointer.address == 0) {
-            throw Exception('SDLDisplay.$methodName was called, but structPointer is a nullptr.');
+            throw Exception('SDLDisplayRaw.$methodName was called, but structPointer is a nullptr.');
         }
     }
 
-    static _libSDLDisplay_class_SDLDisplay_method_SDInit_sig? _SDInit;
-    static _libSDLDisplay_class_SDLDisplay_method_SDGetErrorCode_sig? _SDGetErrorCode;
-    static _libSDLDisplay_class_SDLDisplay_method_SDDestroy_sig? _SDDestroy;
-    static _libSDLDisplay_class_SDLDisplay_method_Flush_sig? _Flush;
-    static _libSDLDisplay_class_SDLDisplay_method_DrawPoint_sig? _DrawPoint;
-    static _libSDLDisplay_class_SDLDisplay_method_DrawLine_sig? _DrawLine;
-    static _libSDLDisplay_class_SDLDisplay_method_DrawRect_sig? _DrawRect;
-    static _libSDLDisplay_class_SDLDisplay_method_FillRect_sig? _FillRect;
+    static _libSDLDisplay_class_SDLDisplayRaw_method_SDInit_sig? _SDInit;
+    static _libSDLDisplay_class_SDLDisplayRaw_method_SDGetErrorCode_sig? _SDGetErrorCode;
+    static _libSDLDisplay_class_SDLDisplayRaw_method_SDGetFrameCount_sig? _SDGetFrameCount;
+    static _libSDLDisplay_class_SDLDisplayRaw_method_SDDestroy_sig? _SDDestroy;
+    static _libSDLDisplay_class_SDLDisplayRaw_method_GetSize_sig? _GetSize;
+    static _libSDLDisplay_class_SDLDisplayRaw_method_Flush_sig? _Flush;
+    static _libSDLDisplay_class_SDLDisplayRaw_method_DrawPoint_sig? _DrawPoint;
+    static _libSDLDisplay_class_SDLDisplayRaw_method_DrawLine_sig? _DrawLine;
+    static _libSDLDisplay_class_SDLDisplayRaw_method_DrawRect_sig? _DrawRect;
+    static _libSDLDisplay_class_SDLDisplayRaw_method_FillRect_sig? _FillRect;
 
     void _initRefs() {
         if (
             _SDInit == null ||
             _SDGetErrorCode == null ||
+            _SDGetFrameCount == null ||
             _SDDestroy == null ||
+            _GetSize == null ||
             _Flush == null ||
             _DrawPoint == null ||
             _DrawLine == null ||
@@ -535,23 +549,25 @@ class SDLDisplay {
         ) {
             final lib = DynamicLibrary.open('build/native/SDL/libSDLDisplay.so');
 
-            _SDInit = lib.lookupFunction<_libSDLDisplay_class_SDLDisplay_method_SDInit_native_sig, _libSDLDisplay_class_SDLDisplay_method_SDInit_sig>('SDInit');
-            _SDGetErrorCode = lib.lookupFunction<_libSDLDisplay_class_SDLDisplay_method_SDGetErrorCode_native_sig, _libSDLDisplay_class_SDLDisplay_method_SDGetErrorCode_sig>('SDGetErrorCode');
-            _SDDestroy = lib.lookupFunction<_libSDLDisplay_class_SDLDisplay_method_SDDestroy_native_sig, _libSDLDisplay_class_SDLDisplay_method_SDDestroy_sig>('SDDestroy');
-            _Flush = lib.lookupFunction<_libSDLDisplay_class_SDLDisplay_method_Flush_native_sig, _libSDLDisplay_class_SDLDisplay_method_Flush_sig>('Flush');
-            _DrawPoint = lib.lookupFunction<_libSDLDisplay_class_SDLDisplay_method_DrawPoint_native_sig, _libSDLDisplay_class_SDLDisplay_method_DrawPoint_sig>('DrawPoint');
-            _DrawLine = lib.lookupFunction<_libSDLDisplay_class_SDLDisplay_method_DrawLine_native_sig, _libSDLDisplay_class_SDLDisplay_method_DrawLine_sig>('DrawLine');
-            _DrawRect = lib.lookupFunction<_libSDLDisplay_class_SDLDisplay_method_DrawRect_native_sig, _libSDLDisplay_class_SDLDisplay_method_DrawRect_sig>('DrawRect');
-            _FillRect = lib.lookupFunction<_libSDLDisplay_class_SDLDisplay_method_FillRect_native_sig, _libSDLDisplay_class_SDLDisplay_method_FillRect_sig>('FillRect');
+            _SDInit = lib.lookupFunction<_libSDLDisplay_class_SDLDisplayRaw_method_SDInit_native_sig, _libSDLDisplay_class_SDLDisplayRaw_method_SDInit_sig>('SDInit');
+            _SDGetErrorCode = lib.lookupFunction<_libSDLDisplay_class_SDLDisplayRaw_method_SDGetErrorCode_native_sig, _libSDLDisplay_class_SDLDisplayRaw_method_SDGetErrorCode_sig>('SDGetErrorCode');
+            _SDGetFrameCount = lib.lookupFunction<_libSDLDisplay_class_SDLDisplayRaw_method_SDGetFrameCount_native_sig, _libSDLDisplay_class_SDLDisplayRaw_method_SDGetFrameCount_sig>('SDGetFrameCount');
+            _SDDestroy = lib.lookupFunction<_libSDLDisplay_class_SDLDisplayRaw_method_SDDestroy_native_sig, _libSDLDisplay_class_SDLDisplayRaw_method_SDDestroy_sig>('SDDestroy');
+            _GetSize = lib.lookupFunction<_libSDLDisplay_class_SDLDisplayRaw_method_GetSize_native_sig, _libSDLDisplay_class_SDLDisplayRaw_method_GetSize_sig>('GetSize');
+            _Flush = lib.lookupFunction<_libSDLDisplay_class_SDLDisplayRaw_method_Flush_native_sig, _libSDLDisplay_class_SDLDisplayRaw_method_Flush_sig>('Flush');
+            _DrawPoint = lib.lookupFunction<_libSDLDisplay_class_SDLDisplayRaw_method_DrawPoint_native_sig, _libSDLDisplay_class_SDLDisplayRaw_method_DrawPoint_sig>('DrawPoint');
+            _DrawLine = lib.lookupFunction<_libSDLDisplay_class_SDLDisplayRaw_method_DrawLine_native_sig, _libSDLDisplay_class_SDLDisplayRaw_method_DrawLine_sig>('DrawLine');
+            _DrawRect = lib.lookupFunction<_libSDLDisplay_class_SDLDisplayRaw_method_DrawRect_native_sig, _libSDLDisplay_class_SDLDisplayRaw_method_DrawRect_sig>('DrawRect');
+            _FillRect = lib.lookupFunction<_libSDLDisplay_class_SDLDisplayRaw_method_FillRect_native_sig, _libSDLDisplay_class_SDLDisplayRaw_method_FillRect_sig>('FillRect');
         }
     }
 
-    SDLDisplay(String title) {
+    SDLDisplayRaw(String title) {
         _initRefs();
         structPointer = _SDInit!(title.toNativeUtf8());
     }
 
-    SDLDisplay.fromPointer(Pointer<Void> ptr) {
+    SDLDisplayRaw.fromPointer(Pointer<Void> ptr) {
         _initRefs();
         structPointer = ptr;
     }
@@ -559,6 +575,11 @@ class SDLDisplay {
     SDLInitErrorCode get errorCode {
         _validatePointer('errorCode');
         return SDLInitErrorCodeFromInt(_SDGetErrorCode!(structPointer));
+    }
+
+    int get frameCount {
+        _validatePointer('frameCount');
+        return _SDGetFrameCount!(structPointer);
     }
 
     @mustCallSuper
@@ -570,6 +591,11 @@ class SDLDisplay {
         structPointer = nullptr;
 
         return out;
+    }
+
+    void GetSize(Pointer<Int32> width, Pointer<Int32> height) {
+        _validatePointer('GetSize');
+        return _GetSize!(structPointer, width, height);
     }
 
     void Flush() {

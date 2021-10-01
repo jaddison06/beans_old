@@ -136,6 +136,9 @@ class ParsedGenFile:
 
     annotations: list[CodegenAnnotation]
 
+    def has_code(self) -> bool:
+        return len(self.functions) > 0 or len(self.classes) > 0
+
     def validate_annotation(self, annotation: CodegenAnnotation, typename: str) -> Optional[str]:
         if annotation.name not in SUPPORTED_ANNOTATIONS[typename]:
             return f"Annotation '{annotation}' not supported on objects of type '{typename}'."

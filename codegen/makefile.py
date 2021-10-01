@@ -15,6 +15,8 @@ def codegen(files: list[ParsedGenFile]) -> str:
 
     libs: list[str] = []
     for file in files:
+        if not file.has_code(): continue
+
         lib_path = f"build{path.sep}{file.libpath_no_ext()}"
         lib_name = f"{lib_path}{shared_library_extension()}"
 
